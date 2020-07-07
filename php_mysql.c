@@ -2272,8 +2272,9 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			fci.retval = &retval;
 			fci.params = NULL;
 			fci.param_count = 0;
+#if PHP_MAJOR_VERSION < 8
 			fci.no_separation = 1;
-
+#endif
 			if (ctor_params && Z_TYPE_P(ctor_params) != IS_NULL) {
 				if (zend_fcall_info_args(&fci, ctor_params) == FAILURE) {
 					/* Two problems why we throw exceptions here: PHP is typeless
